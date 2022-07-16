@@ -11,7 +11,7 @@ pipeline {
             bat 'start /min python rest_app.py'
         }
     }
-    stage('run backend server') {
+    stage('run web server') {
         steps {
             bat 'start /min python web_app.py'
         }
