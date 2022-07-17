@@ -1,7 +1,7 @@
 import requests
 import db_connector
-from Project.backend_testing import backend_test
-from Project.frontend_testing import selenium_test
+from backend_testing import backend_test
+from frontend_testing import selenium_test
 
 try:
     user_name = "test_case_combined"
