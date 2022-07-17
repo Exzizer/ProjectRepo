@@ -5,7 +5,7 @@ import signal
 # Establishing a connection to DB
 from pymysql import IntegrityError
 
-from Project.db_connector import db_action
+from db_connector import db_action
 
 conn = pymysql.connect(host='remotemysql.com', port=3306, user='uy1YDfuk1Y', passwd='3gbgbMmrWo', db='uy1YDfuk1Y')
 conn.autocommit(True)
