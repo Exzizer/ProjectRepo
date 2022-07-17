@@ -5,7 +5,7 @@ import signal
 # Establishing a connection to DB
 from pymysql import IntegrityError
 
-from Project.db_connector import DB_Action
+from Project.db_connector import db_action
 
 conn = pymysql.connect(host='remotemysql.com', port=3306, user='uy1YDfuk1Y', passwd='3gbgbMmrWo', db='uy1YDfuk1Y')
 conn.autocommit(True)
@@ -16,7 +16,7 @@ app = Flask(__name__)
 @app.route('/users/<user_id>', methods=['GET', 'POST', 'DELETE', 'PUT'])
 def user(user_id):
     if request.method == 'GET':
-        result = DB_Action("GET",user_id=user_id,user_name="")
+        result = db_action("GET", user_id=user_id, user_name="")
         if result != -1:
             return {"status": "ok", "user_name": result}, 200
         else:
@@ -28,7 +28,7 @@ def user(user_id):
         request_data = request.json
         # treating request_data as a dictionary to get a specific value from key
         user_name = request_data.get('user_name')
-        result = DB_Action("POST",user_name=user_name,user_id=user_id)
+        result = db_action("POST", user_name=user_name, user_id=user_id)
 
         if result != -1:
             return {"status": "ok", "user_added": user_name}, 200
@@ -41,7 +41,7 @@ def user(user_id):
         # treating request_data as a dictionary to get a specific value from key
         user_name = request_data.get('user_name')
 
-        result = DB_Action("PUT", user_name=user_name, user_id=user_id)
+        result = db_action("PUT", user_name=user_name, user_id=user_id)
 
         if result != -1:
             return {"status": "ok", "user_updated": user_name}, 200
@@ -54,7 +54,7 @@ def user(user_id):
         # treating request_data as a dictionary to get a specific value from key
         user_name = request_data.get('user_name')
 
-        result = DB_Action("DELETE", user_name="", user_id=user_id)
+        result = db_action("DELETE", user_name="", user_id=user_id)
 
         if result != -1:
             return {"status": "ok", "user_deleted": user_name}, 200
